@@ -1,0 +1,46 @@
+{
+  "createTemplate": "Create Template",
+  "templateTitle": "Template title",
+  "templateDescription": "Template description",
+  "public": "Public",
+  "question": "Question",
+  "shortAnswer": "Short answer",
+  "longAnswer": "Long answer",
+  "file": "File Upload",
+  "date": "Date",
+  "time": "Time",
+  "chooseoneofthem": "Choose one of them",
+  "level": "Level",
+  "mondatory": "Mondatory",
+  "multipleChoice": "Multiple Choice",
+  "addQuestion": "Add Question",
+  "addOption": "Add Option",
+  "saveTemplate": "Save Template",
+  "editTemplate": "Edit Template",
+  "templateList": "Template List",
+  "deleteTemplate": "Delete Template",
+  "register": "Register",
+  "login": "Login",
+  "myTemplates": "My Templates",
+  "logout": "Logout",
+  "edit": "Edit",
+  "delete": "Delete",
+  "submit": "Submit",
+
+
+
+
+
+
+
+
+
+  "currentweather": "Current weather",
+  "5forecast": "5-days Forecast",
+  "input": "Input your city name",
+  "5daysvisual": "5-Day Temperature Forecast Visual",
+  "dark": "Dark",
+  "light": "Light",
+  "settings": "Settings",
+  "cancel": "Cancel"
+}
