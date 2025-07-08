@@ -37,9 +37,10 @@ export default function TemplateList() {
 	}
 	async function delete_template(id) {
 		const token = localStorage.getItem('token');
+		console.log(id);
 		axios({
 			method: 'delete',
-			url: `${baseurl}/api/usertemplates/${id}`,
+			url: `${baseurl}/api/templates/${id}`,
 			headers: token ? { Authorization: `Bearer ${token}` } : {},
 		})
 			.then((res) => {
@@ -90,8 +91,8 @@ export default function TemplateList() {
 							},
 							{
 								label: (
-									<Text type="danger">
-										<DeleteOutlined onClick={() => delete_template(item.id)} /> {t('delete')}
+									<Text type="danger" onClick={() => delete_template(item.id)}>
+										<DeleteOutlined /> {t('delete')}
 									</Text>
 								),
 								key: '3',

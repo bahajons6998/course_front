@@ -6,12 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { baseurl } from '../../util/baseurl';
+import { useTheme } from '../../context/ThemeContext';
 
 
 const Register = () => {
   const navigate = useNavigate()
   const [error, setError] = useState('')
   const notify = (text) => toast(text, { autoClose: 1000 });
+  const {theme}=useTheme();
 
   const onFinish = values => {
     // console.log('Received values of form: ', values);
@@ -37,7 +39,7 @@ const Register = () => {
 
   }
   return (
-    <div className='login'>
+    <div className='register' style={{ backgroundColor: theme == 'light' ? '#fff' : '#000', height: '100vh', color: theme == 'dark' ? '#fff' : '#000' }} >
       <ToastContainer />
       <div className='container'>
         <div className='row align-items-center'>

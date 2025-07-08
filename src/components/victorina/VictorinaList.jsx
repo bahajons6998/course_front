@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { DeleteOutlined, EditOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { Typography } from 'antd';
+import { useTheme } from "../../context/ThemeContext";
 
 const { Text } = Typography;
 
 export default function VictorinaList() {
 	const [templist, setTemplist] = useState([]);
 	const navigate = useNavigate();
+	const { theme } = useTheme()
 	const { t } = useTranslation();
 
 	useEffect(() => {
@@ -35,54 +37,30 @@ export default function VictorinaList() {
 				// navigate('/login');
 			});
 	}
-	async function delete_template(id) {
-		const token = localStorage.getItem('token');
-		axios({
-			method: 'delete',
-			url: `${baseurl}/api/usertemplates/${id}`,
-			headers: token ? { Authorization: `Bearer ${token}` } : {},
-		})
-			.then((res) => {
-				get_templates();
-				console.log(res);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-	}
 
 	return (
-		<div className="container">
-			<div className="d-flex justify-content-end">
-				<Button
-					type="default"
-					variant="outlined"
-					onClick={() => navigate('/user/createtemplate')}
-					color="primary"
-				>
-					{t('createTemplate')}
-				</Button>
-			</div>
-			<h1 className="text-center mb-3">{t('myTemplates')}</h1>
-			<div className="row">
-				{templist.length > 0 &&
-					templist.map((item, i) => {
-						return (
-							<Card
-								key={i}
-								title={item?.title}
-								titleStyle={{ fontSize: '24px' }}
-								className="m-2"
-								type="inner"
-								hoverable
-								onClick={() => navigate(`/victorina/${item.id}`)}
-								variant="borderless"
-								style={{ width: 300 }}
-							>
-								<div dangerouslySetInnerHTML={{ __html: item?.description }} />
-							</Card>
-						);
-					})}
+		<div style={{ backgroundColor: theme == 'light' ? '#fff' : '#000', height: '100vh', color: theme == 'dark' ? '#fff' : '#000' }}>
+			<div className="container">
+				<h1 className="text-center mb-3">{t('victorinalist')}</h1>
+				<div className="row">
+					{templist.length > 0 &&
+						templist.map((item, i) => {
+							return (
+								<Card
+									key={i}
+									title={item?.title}
+									// style={{ backgroundColor: theme == 'light' ? '#fff' : '#000',border:'1px solid white', color: theme == 'dark' ? '#fff' : '#000' }}
+									className="m-2"
+									hoverable
+									onClick={() => navigate(`/victorina/${item.id}`)}
+									variant="borderless"
+									// style={{ width: 300 }}
+								>
+									<div dangerouslySetInnerHTML={{ __html: item?.description }} />
+								</Card>
+							);
+						})}
+				</div>
 			</div>
 		</div>
 	);

@@ -4,10 +4,12 @@ import { Button, Form, Input, Flex } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { baseurl } from '../../util/baseurl';
+import { useTheme } from '../../context/ThemeContext';
 
 const Login = () => {
   const navigate = useNavigate()
   const [error, setError] = useState('')
+  const { theme } = useTheme()
 
   const onFinish = values => {
     console.log('Received values of form: ', values);
@@ -24,8 +26,8 @@ const Login = () => {
       .then((res) => {
         localStorage.removeItem('token')
         localStorage.setItem('token', res.data.token)
-
-        navigate('/');
+        console.log(res)
+        navigate('/user/templatelist');
 
       })
       .catch((err) => {
@@ -35,7 +37,7 @@ const Login = () => {
   }
 
   return (
-    <div className='login'>
+    <div className='login' style={{ backgroundColor: theme == 'light' ? '#fff' : '#000', height: '100vh', color: theme == 'dark' ? '#fff' : '#000' }}>
       <div className='container'>
         <div className='row align-items-center'>
           <div className='col-md-4 offset-4'>
@@ -50,7 +52,7 @@ const Login = () => {
                 name="email"
                 rules={[{ required: true, message: 'Please input your Email!' }]}
               >
-                <Input prefix={<UserOutlined />} placeholder="Email" />
+                <Input prefix={<UserOutlined />} placeholder="Email"  />
               </Form.Item>
               <Form.Item
                 name="password"
